@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:ns1="*" 
+	xmlns:view="org.mcd.music.view.*" width="852" height="466">
+	
+	<mx:Script>
+		<![CDATA[
+			import org.mcd.music.view.PlaylistPanel;
+			import org.mcd.music.vo.MusicFile;
+			import mx.collections.ArrayCollection;
+			import org.mcd.music.view.Details;
+			
+			private function showDetails(evt:Event):void {
+				//cbhange to popup
+				
+				/*var details:Details = new Details();
+				var library:Library = Library(evt.target);
+				details.musicDetails = library.libraryGrid.selectedItem as XML;
+				details.label = details.musicDetails.title;
+				details.addEventListener("closeDetails", onCloseDetails);
+				this.tabNav.addChild(details);
+				this.tabNav.selectedChild = details;*/
+			}
+			
+			private function onClosePlayList(evt:Event):void {
+				this.playListNav.removeChild(evt.target as DisplayObject);
+			}
+						
+			private function createNewPlayList():void {
+				var newPlayList:PlaylistPanel = new PlaylistPanel();
+				newPlayList.label = "New PlayList";
+				newPlayList.addEventListener("closePlayList", onClosePlayList);
+				this.playListNav.addChild(newPlayList);
+				this.playListNav.selectedChild = newPlayList;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:HBox bottom="100" top="0" left="0" right="0">
+		<view:Library id="store" label="Library" left="0" top="0" bottom="100" width="50%" height="100%"/>
+		<mx:Canvas height="100%" width="50%">
+			<mx:TabNavigator id="playListNav" right="10" bottom="40" top="10" left="10">
+				<view:PlaylistPanel label="New Playlist" width="100%" height="100%"/>
+			</mx:TabNavigator>
+			<mx:Button label="New Playlist" click="createNewPlayList()" bottom="10" left="10"/>
+		</mx:Canvas>
+	</mx:HBox>
+	<view:Player id="player" bottom="10" left="10" right="10" height="82"/>
+</mx:Canvas>

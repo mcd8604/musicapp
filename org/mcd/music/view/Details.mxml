@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.controls.Alert;
+			
+			[Bindable]
+			public var musicDetails:XML;
+			
+			private function editClicked():void {
+				Alert.show("Edit Details is not yet implemented", "Under Construction");
+			}
+			
+			private function cancelClicked():void {
+				
+			}
+			
+		]]>
+	</mx:Script>
+
+	<mx:Form autoLayout="true" x="0" width="100%" height="100%" y="0">
+		<mx:FormItem label="Title" width="100%">
+			<mx:TextInput id="titleTextInput" text="{this.musicDetails.title}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Artist" width="100%">
+			<mx:TextInput id="artistTextInput" text="{this.musicDetails.artist}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Album" width="100%">
+			<mx:TextInput id="albumTextInput" text="{this.musicDetails.album}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Length (hh:mm:ss)" width="100%">
+			<mx:TextInput id="lengthTextInput" text="{this.musicDetails.length}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Genre" width="100%">
+			<mx:TextInput id="genreTextInput" text="{this.musicDetails.genre}" width="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="Year" width="100%">
+			<mx:TextInput id="yearTextInput" text="{this.musicDetails.year}" width="100%"/>
+		</mx:FormItem>
+		<mx:HBox width="100%" horizontalAlign="right">
+			<mx:Button id="editButton" label="Edit" click="editClicked()" />
+			<mx:Button id="cancelButton" label="Cancel" click="cancelClicked()" />
+		</mx:HBox>
+	</mx:Form>
+</mx:Canvas>

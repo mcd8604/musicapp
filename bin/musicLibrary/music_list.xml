@@ -1,0 +1,18 @@
+<musiclist>
+	<musicfile>
+		<id>0</id>
+		<title>Up Around The Bend</title>
+		<artist>Creedence Clearwater Revival</artist>
+		<album>Cosmo's Factory</album>
+		<length>2:40</length>
+		<genre>Rock</genre>
+		<year>1970</year>
+	</musicfile>
+	<musicfile>
+		<id>1</id>
+		<title>another title</title>
+		<artist>another artist</artist>
+		<album>another album</album>
+		<length>0:00</length>
+	</musicfile>
+</musiclist>

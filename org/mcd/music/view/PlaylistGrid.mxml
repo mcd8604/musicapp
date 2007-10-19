@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Metadata>
+		[Event(name="closePlaylist",type="flash.events.Event")]
+		[Event(name="savePlaylist",type="flash.events.Event")]
+		[Event(name=PLAY_MUSIC_EVENT,type="org.mcd.")]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			import org.mcd.music.events.PlayMusicEvent;
+			import org.mcd.music.vo.MusicFile;
+			import org.mcd.music.vo.Playlist;
+			import mx.events.DragEvent;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var playlist:Playlist;
+			
+			private function closePlayList():void {
+				this.dispatchEvent(new Event("closePlaylist"));
+			}
+			
+			private function savePlaylist():void {
+				this.dispatchEvent(new Event("savePlaylist"));
+			}
+			
+			private function play():void {
+				var musicFile:MusicFile = this.playlistGrid.selectedItem as MusicFile;
+				var playMusicEvent:PlayMusicEvent = new PlayMusicEvent(musicFile);
+				this.dispatchEvent(playMusicEvent);
+			}
+		]]>
+	</mx:Script>
+	<mx:DataGrid id="playlistGrid" 
+				dataProvider="{this.playlist.list}"
+				dropEnabled="true" 
+				doubleClickEnabled="true"
+				doubleClick="play()"
+				bottom="40" top="0" left="0" right="0">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Track" dataField="title"/>
+			<mx:DataGridColumn headerText="Artist" dataField="artist"/>
+			<mx:DataGridColumn headerText="Album" dataField="album"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:Button label="Play" click="play()" bottom="10" left="10" width="51"/>
+	<mx:Button label="Save Playlist" click="savePlaylist()" bottom="10" right="117"/>
+	<mx:Button label="Close Playlist" click="closePlayList()" bottom="10" right="10"/>
+</mx:Canvas>

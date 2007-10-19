@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="325.92593">	
+	<mx:Metadata>
+		[Event(name="playMusic",type="flash.events.Event")]
+	</mx:Metadata>
+	
+	<mx:Script>
+		<![CDATA[
+			import org.mcd.music.vo.MusicFile;
+			public function play(a_musicFile:MusicFile):void {
+				
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:HSlider width="274" top="38" left="10"/>
+	<mx:Label text="00:00" fontWeight="bold" fontSize="12" width="77" top="10" left="12"/>
+	<mx:Label text="Song Info" fontWeight="bold" fontSize="12" top="10" textAlign="center" right="358" left="65"/>
+	<mx:Button label="Pause" width="51" left="121" height="50" top="58"/>
+	<mx:Button label="Play" width="51" left="62" height="50" top="58"/>
+	<mx:Button label="&lt;&lt;" width="44" left="10" height="50" top="58"/>
+	<mx:Button label="&gt;&gt;" left="240" height="50" top="58" width="44"/>
+	<mx:Button label="Stop" width="52" left="180" height="50" top="58"/>
+	
+</mx:Canvas>

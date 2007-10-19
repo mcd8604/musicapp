@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	layout="absolute"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:view="org.mcd.music.view.*"
+	xmlns:service="org.mcd.music.service.*"
+	creationComplete="onCreationComplete()" >
+	<mx:Script>
+		<![CDATA[
+			import org.mcd.music.events.PlayMusicEvent;
+			import org.mcd.music.events.LibraryLoadedEvent;
+			import org.mcd.music.model.LibraryManager;
+			
+			private var libMan:LibraryManager = LibraryManager.getInstance();
+		
+			private function onCreationComplete():void {
+				this.libMan.setServices(this.service);
+				
+				this.libMan.addEventListener(LibraryLoadedEvent.LIBRARY_LOADED, this.libraryPanel.libraryLoaded);
+				
+				//this.libMan.getLibrary();
+				this.libMan.getXMLLibrary();
+			}
+			
+			private function playMusic(evt:PlayMusicEvent):void {
+				this.player.play(evt.musicFile);
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:HDividedBox top="0" left="0" right="0" bottom="0" horizontalGap="3" liveDragging="true">
+		<mx:VBox height="100%" width="300">
+			<view:Player id="player" right="0" top="0" left="0"/>
+			<view:PlaylistPanel id="playlistPanel" height="100%" playMusic="playMusic(event)"  width="100%"/>
+		</mx:VBox>
+		<view:Library id="libraryPanel" label="Library" left="0" top="0" bottom="100" height="100%"/>
+	</mx:HDividedBox>
+	<service:Services id="service" />
+</mx:Application>

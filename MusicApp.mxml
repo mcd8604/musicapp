@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:view="org.mcd.music.view.*"
+	xmlns:service="org.mcd.music.service.*"
+	layout="absolute" >
+
+	<view:MusicDashboard  width="100%" height="100%"/>
+	
+</mx:Application>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" >
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import org.mcd.music.events.LibraryLoadedEvent;
+			import org.mcd.music.vo.MusicFile;
+			import org.mcd.music.view.Details;
+			
+			[Bindable]
+			private var libraryMusic:ArrayCollection;
+			
+			private function showDetails():void {
+				//cbhange to popup
+				
+				/*var details:Details = new Details();
+				var library:Library = Library(evt.target);
+				details.musicDetails = library.libraryGrid.selectedItem as XML;
+				details.label = details.musicDetails.title;
+				details.addEventListener("closeDetails", onCloseDetails);
+				this.tabNav.addChild(details);
+				this.tabNav.selectedChild = details;*/
+			}
+			
+			public function libraryLoaded(event:LibraryLoadedEvent):void {
+				this.libraryMusic = event.library;
+			}
+			
+			private function formatLength(a_item:Object, a_column:DataGridColumn):String {
+				return "00:00";
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:ComboBox top="10" right="10" width="129">
+		<mx:String>Title</mx:String>
+		<mx:String>Artist</mx:String>
+		<mx:String>Album</mx:String>
+		<mx:String>Genre</mx:String>
+	</mx:ComboBox>
+	<mx:Label text="Search:" top="10" left="10"/>
+	<mx:TextInput top="10" left="60" right="147"/>
+	<mx:DataGrid id="libraryGrid" 
+				dragEnabled="true"
+				allowMultipleSelection="true"
+				dataProvider="{this.libraryMusic}" 
+				doubleClickEnabled="true"
+				top="40" 
+				left="0" 
+				right="0"
+				bottom="40">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Track" dataField="songName"/>
+			<mx:DataGridColumn headerText="Artist" dataField="artist"/>
+			<mx:DataGridColumn headerText="Album" dataField="album"/>
+			<mx:DataGridColumn headerText="Length" dataField="length"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:Button label="Details" click="showDetails()" bottom="10" left="10"/>
+</mx:Canvas>

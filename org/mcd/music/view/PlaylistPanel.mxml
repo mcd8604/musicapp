@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:view="org.mcd.music.view.*">
+	<mx:Metadata>
+		[Event(name="playMusic",type="org.mcd.music.events.PlayMusicEvent")]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.List;
+			import org.mcd.music.vo.MusicFile;
+			import org.mcd.music.model.PlaylistManager;
+			import mx.collections.ArrayCollection;
+			import org.mcd.music.vo.Playlist;
+			
+			private function closePlaylist():void {
+				this.playListNav.removeChild(this.playListNav.selectedChild);
+			}
+			
+			private function savePlaylist():void {
+				var curPlaylist:PlaylistGrid = PlaylistGrid(this.playListNav.selectedChild); 
+				PlaylistManager.getInstance().savePlaylist(curPlaylist.playlist);
+			}
+						
+			private function createNewPlayList():void {
+				var playlistName:String = this.newListTxt.text;
+				if(playlistName.length > 0) {
+					var newPlaylist:Playlist = new Playlist(playlistName, new ArrayCollection());
+					this.showPlayList(newPlaylist);
+					this.newListTxt.text = "";
+				}
+			}
+				
+			private function showPlayList(a_playlist:Playlist):void {
+				var newGrid:PlaylistGrid = new PlaylistGrid();
+				newGrid.playlist = a_playlist;
+				newGrid.label = a_playlist.name;
+				newGrid.addEventListener("savePlaylist", this.savePlaylist);
+				newGrid.addEventListener("closePlaylist", this.closePlaylist);
+				this.playListNav.addChild(newGrid);
+				this.playListNav.selectedChild = newGrid;
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:TabNavigator id="playListNav" right="0" bottom="40" top="0" left="0"/>
+	<mx:Label text="New Playlist:" left="10" bottom="10"/>
+	<mx:TextInput id="newListTxt" left="92" right="68" bottom="10" height="22"/>
+	<mx:Button label="Create" click="createNewPlayList()" width="50" bottom="10" height="22" right="10"/>
+</mx:Canvas>

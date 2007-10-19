@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:UIComponent xmlns:mx="http://www.adobe.com/2006/mxml">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.AbstractInvoker;
+			public function getHTTPService( serviceId : String ) : HTTPService
+			{
+		    	return HTTPService( getInvokerService( serviceId ) );
+			}
+		  
+			private function getInvokerService( serviceId : String ) : AbstractInvoker
+			{
+				if ( this[ serviceId ] == undefined ) 
+			    throw new Error( "No invoker service found for HTTP service name " + serviceId );
+			     
+				return this[ serviceId ];
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:HTTPService 
+		id="xmlLibraryLoader" 
+		url="musicLibrary/libraryLoader.xml" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+	
+	<mx:HTTPService 
+		id="libraryLoader" 
+		url="http://www.emergydesigns.com/musicLibrary/libraryLoader.php" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+		
+	<mx:HTTPService 
+		id="playlistNamesLoader" 
+		url="playlists/playlistNames.xml" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+		
+	<mx:HTTPService 
+		id="playlistLoader" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+
+	<mx:HTTPService 
+		id="playlistNamesSaver" 
+		url="playlists/playlistNamesSaver.php" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+		
+	<mx:HTTPService 
+		id="playlistSaver" 
+		url="playlists/playlistSaver.php" 
+		useProxy="false" 
+		resultFormat="e4x" 
+		showBusyCursor="true" />
+</mx:UIComponent>
